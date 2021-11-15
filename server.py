@@ -3,13 +3,13 @@ import cloudinary.uploader
 import os
 
 CLOUDINARY_KEY = os.environ['CLOUDINARY_KEY']
-CLOUDINARY_KEY_SECRET = os.environ['CLOUDINARY_SECRET']
-CLOUD_NAME = "YOUR_CLOUD_NAME_GOES_HERE"
+CLOUDINARY_SECRET = os.environ['CLOUDINARY_SECRET']
+CLOUD_NAME = "YOUR-CLOUD-NAME-HERE"
 
 app = Flask(__name__)
 
 @app.route('/')
-def homepage():
+def homepage():$
     return render_template('homepage.html')
 
 @app.route('/show-image')
@@ -28,7 +28,7 @@ def post_form_data():
 
     result = cloudinary.uploader.upload(my_file, 
                                         api_key=CLOUDINARY_KEY, 
-                                        api_secret=CLOUDINARY_KEY_SECRET, 
+                                        api_secret=CLOUDINARY_SECRET, 
                                         cloud_name=CLOUD_NAME)
 
     img_url = result['secure_url']
