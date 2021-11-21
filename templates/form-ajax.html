@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block title %}Cloudinary Demo Upload{% endblock %}
+
+{% block content %}
+
+<h1>CLOUDINARY DEMO: UPLOAD MEDIA</h1>
+<p>This page uses AJAX to send the form data without reloading the page.
+   This demo uses JQuery to make the AJAX request (but you could use
+   <code>fetch</code> instead).
+</p>
+<form action="/post-form-data" method="post" enctype="multipart/form-data">
+    <input type="file" name="my-file"> 
+    <input type="submit">
+</form>
+
+<script>
+
+$('form').on('submit', evt => {
+  evt.preventDefault();
+
+  const myFile = $('input[name="my-file"]')[0].files[0];
+  if (myFile != undefined) {
+    
+    const formData = new FormData();
+    formData.append('my-file', myFile);
+    $.ajax({
+        url: '/post-form-data-ajax',
+        data: formData,
+        processData: false,
+        contentType: false,
+        type: 'POST',
+        success: res => {
+            alert(res);
+            // Add your fancy JavaScript here.
+        }
+    });
+  }
+  else {
+      alert("No file uploaded.");
+  }
+
+});
+
+
+
+
+</script>
+{% endblock %}
