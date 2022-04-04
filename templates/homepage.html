@@ -4,9 +4,76 @@
 
 {% block content %}
 
-<h1>CLOUDINARY DEMO: HOMEPAGE</h1>
-<h2>Links</h2>
-<ul>
-    <li><a href="/media-upload-form">Media Upload Form</a></li>
-</ul>
+<h1>Cloudinary Demo: HOMEPAGE</h1>
+<hr/>
+<h2><a href="/media-upload-form">Simple Media Upload</a></h2>
+<p><strong>
+    This approach uses the browser's default form action on submit.
+</strong></p>
+<p>
+    The browser makes a request to the server (Flask backend), providing the
+    data in the form.
+</p>
+<p>
+    Then the server makes a request to the Cloudinary API, passing along the
+    form data.
+</p>
+<p>    
+    After receiving the response from Cloudinary, the server sends a response to
+    the browser (frontend) and the browser displays the response after reloading
+    the page. 
+</p>
+<h2><a href="/async-media-upload-form">Asynchronous Media Upload</a></h2>
+<p><strong>
+    This approach uses the JavaScript
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/">
+    Fetch API</a> to process the form submission asynchronously.
+</strong></p>
+<p>
+    On the frontend (browser), JavaScript <em>prevents</em> the default form
+    action and instead sends the form data to the server (Flask backend) using a
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch#uploading_a_file">
+    <code>fetch</code></a> request.
+</p>
+<p>
+    Just as before, the server makes a request to the Cloudinary API, passing
+    along the form data.
+</p>
+<p>
+    After receiving the response from Cloudinary, the server sends a response to
+    the browser (frontend), but this time the browser uses JavaScript to display
+    the response and the page does not reload.
+</p>
+<hr/>
+<h3>Other Cloudinary Approaches</h3>
+<p>
+    In both demos, the Flask server uses the Cloudinary
+    <a href="https://cloudinary.com/documentation/django_integration">
+    Python SDK</a> and acts as an intermediary between the browser and
+    the Cloudinary API. (This is a useful technique in cases where the browser
+    is not allowed to make requests to an API directly due to 
+    <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS">CORS</a>
+    restrictions.) 
+</p>
+<p>
+    Cloudinary's
+    <a href="https://cloudinary.com/documentation/upload_images#uploading_with_a_direct_call_to_the_rest_api">
+    REST API</a> <em>can</em> be called directly via JavaScript, however it
+    requires generating authentication signatures, which adds some 
+    complexity. 
+</p> 
+<p>
+    Alternatively, Cloudinary offers a
+    <a href="https://cloudinary.com/documentation/javascript_image_and_video_upload">
+    JavaScript SDK</a>, which allows the browser to make requests to the
+    Cloudinary API directly (via JavaScript), but this approach requires the
+    assistance of frontend tooling and frameworks.
+</p>
+<p>
+    Lastly, Cloudinary provides a premade
+    <a href="https://cloudinary.com/documentation/upload_widget">upload
+    widget</a>, which can be configured with JavaScript, to assist with media
+    uploads.
+</p>
+
 {% endblock %}

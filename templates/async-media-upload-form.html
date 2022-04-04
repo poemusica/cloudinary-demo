@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+
+{% block title %}Cloudinary Demo Upload{% endblock %}
+
+{% block content %}
+
+<h1>Cloudinary Demo: UPLOAD MEDIA</h1>
+<h2>Asynchronous Media Upload</h2>
+<p><strong>
+    This approach uses the JavaScript
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/">
+    Fetch API</a> to process the form submission asynchronously.
+</strong></p>
+<p>
+    On the frontend (browser), JavaScript <em>prevents</em> the default form
+    action and instead sends the form data to the server (Flask backend) using a
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch#uploading_a_file">
+    <code>fetch</code></a> request.
+</p>
+<p>
+    Just as before, the server makes a request to the Cloudinary API, passing
+    along the form data.
+</p>
+<p>
+    After receiving the response from Cloudinary, the server sends a response to
+    the browser (frontend), but this time the browser uses JavaScript to display
+    the response and the page does not reload.
+</p>
+<hr/>
+<h2>Asynchronous Media Upload Form</h2>
+<p>Select a file from your computer to upload to Cloudinary.</p>
+<form action="/post-form-data" method="post" enctype="multipart/form-data">
+    <input type="file" name="my-file"> 
+    <input type="submit">
+</form>
+
+<script>
+
+document.querySelector('form').addEventListener('submit', (evt) => {
+    evt.preventDefault();
+    const myFile = document.querySelector('input[name="my-file"]').files[0];
+    if (myFile != undefined) {
+        const formData = new FormData();
+        formData.append('my-file', myFile);
+        // (If you have a more complex form, you can append additional data.)
+
+        fetch('/post-form-data-async', {
+            method: 'POST',
+            body: formData,
+        })
+        .then(response => response.json())
+        .then(responseJson => {
+            console.log(responseJson);
+            alert(`The Cloudinary URL for your upload is: ${responseJson}`);
+            // Add your fancy JavaScript here.
+        });
+
+    } else {
+        alert("No file uploaded.");
+    }
+});
+
+</script>
+
+{% endblock %}

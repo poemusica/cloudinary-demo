@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block title %}Cloudinary Demo Upload{% endblock %}
+
+{% block content %}
+
+<h1>Cloudinary Demo: UPLOAD MEDIA</h1>
+<hr/>
+<h2>Simple Media Upload</h2>
+<p><strong>
+    This approach uses the browser's default form action on submit.
+</strong></p>
+<p>
+    The browser makes a request to the server (Flask backend), providing the
+    data in the form.
+</p>
+<p>
+    Then the server makes a request to the Cloudinary API, passing along the
+    form data.
+</p>
+<p>    
+    After receiving the response from Cloudinary, the server sends a response to
+    the browser (frontend) and the browser displays the response after reloading
+    the page. 
+</p>
+<hr/>
+<h2>Simple Media Upload Form</h2>
+<p>Select a file from your computer to upload to Cloudinary.</p>
+<form action="/post-form-data" method="post" enctype="multipart/form-data">
+    <input type="file" name="my-file"> 
+    <input type="submit">
+</form>
+
+{% endblock %}
