@@ -71,6 +71,7 @@ You need these three pieces of information to make requests to the Cloudinary AP
 #### Step 2: Keep your credentials secret.
 Add **secrets.sh** to your **.gitignore** file. 
 Put your **API Key** and **API Secret** in your **secrets.sh** file in your project directory.
+
 ![.gitignore and secrets.sh screenshot](https://user-images.githubusercontent.com/6889489/161648490-94dd067b-06c4-4e15-aec1-c362f888f44b.png)
 
 #### Step 3: Load your secrets
@@ -82,6 +83,7 @@ In the terminal, load your API credentials as shell environment variables by run
 
 ### Part 3: Make a Form
 Below is a snippet of an HTML page that contains a simple form for uploading an image.
+
 ![form screenshot](https://user-images.githubusercontent.com/6889489/161648731-1d0565d5-8b50-4ca9-bb30-31750b5cfc49.png)
 
 To upload an image, your form must include:
@@ -114,7 +116,8 @@ In your **server.py** file,
 - import `cloudinary.uploader` from the `cloudinary` library.
 - use the `os` module to access your API credentials (shell environment variables).
 - Replace `“YOUR-CLOUD-NAME-HERE”` with your actual **Cloud Name** as a string.
-![image](https://user-images.githubusercontent.com/6889489/161649291-2a45d1e4-6556-4d16-aeee-d0408067217d.png)
+
+![server screenshot](https://user-images.githubusercontent.com/6889489/161649291-2a45d1e4-6556-4d16-aeee-d0408067217d.png)
 
 
 ### Part 5: Make the API request
@@ -141,9 +144,9 @@ Next, we need to save the uploaded file to Cloudinary by making an API request.
 Make sure you store the result of the request in a variable! It contains important information.
 ```
 result = cloudinary.uploader.upload(my_file,
-   api_key=CLOUDINARY_KEY,
-   api_secret=CLOUDINARY_SECRET,
-   cloud_name=CLOUD_NAME)
+         api_key=CLOUDINARY_KEY,
+         api_secret=CLOUDINARY_SECRET,
+         cloud_name=CLOUD_NAME)
 ```
 
 #### Step 4: Save the generated URL to your database
