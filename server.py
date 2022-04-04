@@ -9,7 +9,7 @@ CLOUD_NAME = "YOUR-CLOUD-NAME-HERE"
 app = Flask(__name__)
 
 @app.route('/')
-def homepage():$
+def homepage():
     return render_template('homepage.html')
 
 @app.route('/show-image')
