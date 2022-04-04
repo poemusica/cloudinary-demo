@@ -12,7 +12,7 @@ The guide, instructions, and demos are designed with new developers in mind, spe
 Images make your web pages more exciting. Does your web app have user accounts? Why not let your users upload a profile photo!? Does your web app have log entries? Make entries more interesting by allowing users to attach a photo. 
 
 
-## Why Image-Hosting?
+## Why image-hosting?
 We don’t want to save entire image files in our databases. Images are large! Our web servers (currently, our personal computers) would run out of storage if we saved all that data in our databases or on our servers. Instead, we can use a third-party service that will store the images for us on their servers. Then, we can simply save the image URLs as strings in our database. Strings take up way less storage space than entire image files. 
 
 There are many image-hosting services to choose from, but [Cloudinary](https://cloudinary.com/) has a free tier and is easy to use.
